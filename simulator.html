@@ -1,0 +1,154 @@
+<html>
+    <head>
+        <head>
+            <!-- Required meta tags -->
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+            <!-- Bootstrap CSS -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        
+            <title>CRT</title>
+          </head>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+            <a class="navbar-brand" href="index.html"> Chinese Remainder Theorem Virtual Lab</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html">Introduction </a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="example.html">Procedure</a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="exercise.html">Exercise</a>
+                </li>
+                <!-- <li class="nav-item">
+                  <a class="nav-link" href="#">Procedure
+                </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Theory</a>
+                </li> -->
+                <li class="nav-item active">
+                  <a class="nav-link" href="simulator.html">Simulator<span class="sr-only">(current)</span></a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href=""> Designed by Sarrah Master <br>Tina Munje <br>Sarang Maske  </a>
+          </nav>
+        <form name="f1">
+            <br><br><br>
+        <label>Enter the congruent equation numbers:  <br> format:<br><b>1 5 1 7</b> </label> <textarea id="eqn" ></textarea>
+       <br><br>
+        <input type="submit" value="Find x" onclick="crt();"></input>
+        <p id="n2"></p>
+        <p id="eqn1"></p>
+        <p id="eqn2"></p>
+        <p id="eqn3"></p>
+        <p id="eqn4"></p>
+        <p id="eqn5"></p>
+
+        
+        <h4>Enter Co-prime numbers only or validate the co-prime numbers using exercise section.</h4>
+        </form>
+        <script type="text/javascript"> 
+        var M=1; 
+        var ans=0;
+        function crt(){
+            var i,j,k=1,j1=1;
+            var eqn=document.f1.eqn.value;
+            var arr=eqn.split(" ");
+            var len=arr.length;
+            var narr = [],gcd=" ", eqns=" ",a=" ",m=" ";
+            while(arr.length > 0) {
+                narr.push(arr.splice(0,2));
+            }
+            for (var i = 0; i < narr.length; i++) {
+                     eqns=eqns+narr[i][0]+" mod " + narr[i][1]+"<br/>";
+                     a=a+"a"+k+"= "+narr[i][0]+"&nbsp &nbsp &nbsp &nbsp &nbsp"+"m"+k+"= "+narr[i][1]+"<br/>";
+                     k++;
+            }  
+            document.write(eqns,"<br/>",a,"<br/>");
+            
+            // for (var j = 0; j < narr.length; j++) {
+            //             var r1=narr[j+1][1];
+            //             var r2=narr[j][1];
+            //             var t1 = 0, t2 = 1;
+            //             if (r2> 0)
+            //             {
+            //                 var q = Math.floor(r1 / r2);
+            //                 var r = r1 - (q * r2);
+            //                 r1 = r2;
+            //                 r2 = r;
+                        
+            //                 var t = t1 - (q * t2);
+            //                 t1 = t2;
+            //                 t2 = t;
+            //             }
+            //         gcd="The gcd of ("+narr[j][1]+","+narr[j+1][1]+") is: "+r1;
+            // }
+            for (var z = 0; z < narr.length; z++) {
+                M=M*narr[z][1];
+            } 
+            document.write("M= ",M,"<br/><br/>");
+            var x=" ",sum=" ",y=" ";
+            for (var j = 0; j <= narr.length; j++) {
+                        var r1=narr[j][1];
+                        var r2=M/narr[j][1];
+                        var m2=narr[j][1];
+                        var t1 = 0, t2 = 1;
+                        var x1,x2,x3,x4,x,sum;
+                        document.write("M",j1,"= ",r2,"<br/>");
+                        while (r2> 0)
+                        {
+                            var q = Math.floor(r1 / r2);
+                            var r = r1 - (q * r2);
+                            r1 = r2;
+                            r2 = r;
+                        
+                            var t = t1 - (q * t2);
+                            t1 = t2;
+                            t2 = t;
+                        }
+                    gcd="The gcd of ("+narr[j][1]+","+M/narr[j][1]+") is: "+r1; 
+                    if (r1 == 1)
+                    {
+                        document.write ("\nMultiplicative inverse exists.","<br/>");
+                            if (t1 > 0)
+                                document.write ("Multiplicative inverse of (",narr[j][1],",",M/narr[j][1], ") is:",t1,"<br/>");
+                            else{
+                                t1 = parseInt(t1)+parseInt(m2);
+                                document.write ("Multiplicative inverse of (",narr[j][1],",",M/narr[j][1], ") is:",t1,"<br/>");
+                        }
+                    }
+                    else
+                        {
+                        document.write ("\nMultiplicative inverse doesn't exist");
+                        }
+                        
+                         x2=parseInt(M/narr[j][1]);
+                         x4=parseInt(narr[j][0]);
+                         sum=0;
+                         sum=(x4* x2*t1);
+                         ans+=sum;
+                         x=parseInt(ans)%parseInt(M);
+                         document.write("a*M*X-1= ",sum,"<br/><br/>"); 
+                         if(j==narr.length-1){
+
+                           document.write("Value of X is ",x,"<br/><br/>"); 
+                         }
+
+                        
+                    } 
+                }
+        </script>
+    </body>
+</html>

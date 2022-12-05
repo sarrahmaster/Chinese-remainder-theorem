@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <head>
+            <!-- Required meta tags -->
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+            <!-- Bootstrap CSS -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        
+            <title>CRT</title>
+          </head>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+            <a class="navbar-brand" href="index.html"> Chinese Remainder Theorem Virtual Lab</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html">Introduction </a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="example.html">Procedure</a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="exercise.html">Exercise</a>
+                </li>
+                <!-- <li class="nav-item">
+                  <a class="nav-link" href="#">Procedure
+                </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Theory</a>
+                </li> -->
+                <li class="nav-item active">
+                  <a class="nav-link" href="simulator.html">Simulator<span class="sr-only">(current)</span></a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href=""> Designed by Sarrah Master <br>Tina Munje <br>Sarang Maske  </a>
+          </nav>
+        <form name="f1">
+            <h4>x=(a<sub>1</sub>*M<sub>1</sub>*M<sub>1</sub><sup>-1</sup>+a<sub>2</sub>*M<sub>2</sub>*M<sub>2</sub><sup>-1</sup>+.........a<sub>n</sub>*M<sub>n</sub>*M<sub>n</sub><sup>-1</sup>)</h4>
+            <label>Enter the numbers to find gcd:  <br> <b>Format:<br>1 5 1 7</b> </label> <textarea id="eqn" ></textarea><br>
+                <input type="submit" value="Find GCD" onclick="gcd(); return false;"></input>
+                <p id="eqn1"></p>
+            <label>Enter the numbers to find value of M:  <br>M=m<sub>1</sub>*m<sub>2</sub>....*m<sub>n</sub><br> <b>Format:<br>1 5 1 7</b> </label> <textarea id="M1" ></textarea><br>
+                <input type="submit" value="Find M" onclick="M(); return false;"></input>
+                <p id="findM"></p>
+            <label>Enter M and m<sub>n</sub> to find value of M<sub>n</sub>:  <br>M<sub>n</sub>=M/m<sub>k</sub><br> <b>Format:<br>1 5 1 7</b> </label> <textarea id="Mn" ></textarea><br>
+                <input type="submit" value="Find Mn" onclick="Mseries(); return false;"></input>
+                <p id="findMn"></p>
+            <label>Enter m<sub>n</sub> and M<sub>n</sub> to find inverse:  <br><b>Format:<br>1 5 1 7</b> </label> <textarea id="Minverse" ></textarea><br>
+                <input type="submit" value="Find M inverse" onclick="inverse(); return false;"></input>
+                <p id="findinverse"></p>
+        </form>
+        <script type="text/javascript"> 
+        function gcd(){
+            var i,j,k=1,j1=1;
+            var eqn=document.f1.eqn.value;
+            var arr=eqn.split(" ");
+            var len=arr.length;
+            var narr = [],gcd=[];
+            var r1,r2,r3=[];
+            for (var j = 0; j < arr.length-1; j++) {
+                        r1=arr[j+1];
+                        r2=arr[j];
+                        var t1 = 0, t2 = 1;
+                        while (r2> 0)
+                        {
+                            var q = Math.floor(r1 / r2);
+                            var r = r1 - (q * r2);
+                            r1 = r2;
+                            r2 = r;
+                        
+                            var t = t1 - (q * t2);
+                            t1 = t2;
+                            t2 = t;
+                        }
+                    gcd=gcd+"The gcd of ("+arr[j]+","+arr[j+1]+") is: "+r1+"<br/>";
+            }
+            document.getElementById("eqn1").innerHTML=gcd;    
+        }
+        function M(){
+            var i;
+            var M1=document.f1.M1.value;
+            var arr=M1.split(" ");
+            var len=arr.length;
+            var mul=1;
+            var r1,r2,r3=[];
+            for ( i = 0; i < arr.length; i++) {
+                    mul=mul*arr[i];
+            }
+            document.getElementById("findM").innerHTML=mul;    
+        }
+        function Mseries(){
+            var i;
+            var Mn=document.f1.Mn.value;
+            var arr=Mn.split(" ");
+            var len=arr.length;
+            var div=1;
+                    div=arr[0]/arr[1];
+            document.getElementById("findMn").innerHTML=div;    
+        }
+        function inverse(){
+            var k;
+            var Minverse=document.f1.Minverse.value;
+            var arr=Minverse.split(" ");
+            var len=arr.length;
+            var x=" ",sum=" ",y=" "; 
+                        var r1=arr[0];
+                        var r2=arr[1];
+                        var m2=arr[0];
+                        var t1 = 0, t2 = 1;
+                        while (r2> 0)
+                        {
+                            var q = Math.floor(r1 / r2);
+                            var r = r1 - (q * r2);
+                            r1 = r2;
+                            r2 = r;
+                        
+                            var t = t1 - (q * t2);
+                            t1 = t2;
+                            t2 = t;
+                        }
+                    if (r1 == 1)
+                    {
+                            if (t1 > 0)
+                               document.getElementById("findinverse").innerHTML="Multiplicative inverse of ("+arr[0]+","+arr[1]+ ") is: "+t1+"<br/>";
+                            else{
+                                t1 = parseInt(t1)+parseInt(m2);
+                                document.getElementById("findinverse").innerHTML="Multiplicative inverse of ("+arr[0]+","+arr[1]+ ") is: "+t1+"<br/>";
+                            }   
+                    }
+                    else
+                        {
+                        document.write ("\nMultiplicative inverse doesn't exist");
+                        }
+        }
+        </script>
+    </body>
+</html>

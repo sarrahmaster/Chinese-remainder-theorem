@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <title>CRT</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+      <a class="navbar-brand" href="index.html"> Chinese Remainder Theorem Virtual Lab</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Introduction </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="example.html">Procedure<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="exercise.html">Exercise</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#">Procedure
+          </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Theory</a>
+          </li> -->
+          <li class="nav-item active">
+            <a class="nav-link" href="simulator.html">Simulator</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href=""> Designed by Sarrah Master <br>Tina Munje <br>Sarang Maske  </a>
+    </nav>
+      <br><br><br>
+      <center>
+        <div class="container" style="font-size: 20px;">
+
+         <p align="justify"> <b>  CHINESE REMAINDER THEOREM STATEMENT </b>: - Here is the statement of the problem that the Chinese Remainder Theorem solves.
+            Theorem (Chinese Remainder Theorem).Let m1,...,mk be integers with gcd(mi, mj )=1
+            whenever i 6= j. Let m be the product m = m1m2 ··· mk. Let a1,...,ak be integers. Consider the
+            system of congruences:
+            x ≡ a1 (mod m1)
+            (∗) x ≡ a2 (mod m2)
+            ...
+            x ≡ ak (mod mk).
+            Then there exists exactly one x ∈ Zm satisfying this system. <br> <br>
+            The solution to the system (*) may be obtained by the following algorithm. <br>
+            Theorem (Chinese Remainder Theorem Algorithm). We may solve the system (*) as follows. <br>
+            (1) For each i = 1,...,k, let zi = m/mi = m1m2 ...mi−1mi+1 ...mk. <br>
+            (2) For each i = 1,...,k, let yi = z−1 <br>
+            i (mod mi). (Note that this is always possible because
+            gcd(zi, mi)=1.) <br>
+            (3) The solution to the system (*) is x = a1y1z1 + ··· + akykzk. 
+           <br><br>
+            
+           <b> EXAMPLE :-</b> <br><br> 
+            Use the Chinese Remainder Theorem to find all solutions in Z60 such that <br>
+            x ≡ 3 mod 4<br>
+            x ≡ 2 mod 3<br>
+            x ≡ 4 mod 5.<br>
+            We solve this in steps.<br>
+           <b> Step 0</b> Establish the basic notation. In this problem we have k = 3, a1 = 3, a2 = 2, a3 = 4, <br>
+            m1 = 4, m2 = 3, m3 = 5, and m = 4 · 3 · 5 = 60. <br>
+            <b> Step 1</b> Implement step (1). z1 = m/m1 = 60/4=3 · 5 = 15, z2 = 20, and z3 = 12. <br>
+        <b> Step 2</b> Implement step (2). We solve ziyi ≡ 1 mod mi, i = 1, 2, 3. In this problem, we need to
+            solve<br>
+            15y1 ≡ 1 mod 4<br>
+            20y2 ≡ 1 mod 3<br>
+            12y3 ≡ 1 mod 5.<br>
+            The yi can be computed using the tally table version of the generalized Euclidean algorithm
+            (cf. Congruence Supplement).<br> For example, in the first equation for y1, the tally method
+            automatically solves 15y1 + 4t = 1 for y1 and t, and we find that y1 = 3. Continuing, we
+            find that y1 = 3, y2 = 2, and y3 = 3.<br>
+        <b>   Step 3 </b>Implement step (3). x ≡ a1y1z1 + a2y2z2 + a3y3z3 (mod 60). Substituting, we obtainv
+            3 · 3 · 15 + 2 · 2 · 20 + 4 · 3 · 12 = 359 which reduces to x ≡ 59 (mod 60).</p>
+                <br><br>
+               <a href="#"> <button type="button" class="btn btn-primary btn-lg btn-block"> Open Simulator</button></a>
+        </div>
+      </center>
+
+ <br><br>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+    
+  </body>
+</html>
